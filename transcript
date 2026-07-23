@@ -1,0 +1,126 @@
+
+Alright, let's just start with install docker on jupyter
+
+I will use script to install docker more easily and more faster
+
+Okay, you can check script later
+
+You code to download jspy on your jupyter server
+
+And then you cast to check script
+
+Okay, everything will be okay then Run it Copy this one And enter
+
+It will run step by step to install docker on jupyter server
+
+You also can do it in os or without any any os you want
+
+Okay, what if it's done
+
+This is what you docker version to check
+
+Okay, then you also need
+
+provide permission for docker user
+
+Copy tweet comment and pass it run it. Okay
+
+Okay
+
+
+
+All right, next step.
+
+We install Terraform to manage infrastructure.
+
+Go to Terraform website
+
+and copy command line for the line up.
+
+Copy this one, enter first terminal and run it.
+
+When terminal is used command,
+
+you just waiting and sometimes you add
+
+command like just, just enter. It's done.
+
+You have a Terraform to manage your infrastructure.
+
+That's something like Terraform version. Okay.
+
+
+
+Then, next step, you also need to install iplus-cli on ubuntu Click on Linux
+
+You can copy this command and run it to install iplus-cli
+
+I also install unzip to unzip file
+
+Yeah, run it and waiting
+
+Okay, iplus-cli successfully setup on ubuntu server
+
+
+Then, next step, we configure the access key to connect to AWS console
+
+Go to security credentials
+
+Unix-in-admin-user
+
+And create user command line
+
+And understand, then next
+
+You also create the previous task value for you to check later It's optional
+
+Okay, for instance, that's all That's all On AWS On Linux What
+
+Okay, maybe it's not Access key To remember Okay, got it
+
+Create new access key
+
+You will have access key and ship with access key
+
+Copy this one and paste it in node In node file
+
+You need to sell this node file securely Securely, okay
+
+Then, use the iBlack config When you run it
+
+iBlack will ask you two information Copy this one And sign
+
+Which default reason name you choose Virginia
+
+Enter and default output format Use this one
+
+Okay, that's done
+
+You also use some iBlack command line to check it
+
+With iBlack S3-LS
+
+Okay, it's now have node S3 bucket
+
+
+Then, in this step, we install Kubectl on Ubuntu server, go to the website, and copy step-by-step command line.
+
+So, I will compile all of these for you.
+
+We copy this one and install it.
+
+Then, we install Hams on Ubuntu
+
+We need Hams to install any charger later
+
+to deal with the creative cluster
+
+So, you can check brief from Hams website
+
+And copy this one
+
+Copy scan passes
+
+And ok, we don't have Hams
+
+You have version to check something
