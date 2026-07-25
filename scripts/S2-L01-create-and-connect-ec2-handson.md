@@ -8,92 +8,88 @@
 
 ## Part A — Create the EC2 instance
 
-"Alright guys, let's create our server. But before anything — look at the top-right
-corner of the screen. It should say **Asia Pacific, Mumbai**. We're in India, so we
-always work in the Mumbai region. Just confirm that first.
+"Let's create our server. First, look at the top-right corner of the screen. It should
+say **Asia Pacific, Mumbai**. We always work in the Mumbai region. Confirm that first.
 
-Okay, now in the search bar I'll type **EC2** and open it. This is the service where
-we create our servers. I'll click this orange **Launch instance** button.
+In the search bar, type **EC2** and open it. This is where we create our servers. Click
+the orange **Launch instance** button.
 
-First it asks for a name. I'll call mine `booknova-ubuntu-01` — I'm using our project
-name `booknova` so later it's easy to recognize.
+First it asks for a name. I'll call mine `booknova-ubuntu-01`. I use the project name
+`booknova` so it's easy to recognize later.
 
-Now it asks which operating system I want. I'll scroll and pick **Ubuntu**. We'll keep
-the default Ubuntu version that's already selected.
+Next, pick the operating system. Scroll and choose **Ubuntu**. Keep the default Ubuntu
+version.
 
-Next is the instance type — this is basically the size of the machine. I'll choose
-**t2.medium**. This gives us enough power to run Docker later without any trouble.
+Next is the instance type — the size of the machine. Choose **t2.medium**. This gives
+us enough power to run Docker later.
 
-Now, very important — the key pair. This is the key we'll use to log into the server.
-I'll click **Create new key pair**, give it the name `booknova-key`, keep it as **RSA**
-and **.pem**, and click create. See, it downloaded a file to my machine. Keep this file
-safe — this is the only key to your server.
+Now the key pair. This is the key we use to log into the server. Click **Create new key
+pair**, name it `booknova-key`, keep **RSA** and **.pem**, and click create. It
+downloads a file to your machine. Keep this file safe — it's the only key to your
+server.
 
-Coming down to network settings — I'll let it use the default network, and I'll make
-sure it creates a security group that allows **SSH on port 22**. That's the door we'll
-use to connect.
+In network settings, use the default network and make sure it creates a security group
+that allows **SSH on port 22**. That's the door we use to connect.
 
-Then storage — the default is 8 GB, but I'll bump it up to **20 GB**, because Docker
-images will need some space.
+For storage, the default is 8 GB. Bump it up to **20 GB**, because Docker images need
+space.
 
-That's everything. I'll click **Launch instance**... and give it a few seconds. Let me
-click **View all instances**. Now we wait until the state says **Running** and the
-status checks show **2 out of 2 passed**. There we go — our server is up."
+That's everything. Click **Launch instance**, then **View all instances**. Wait until
+the state says **Running** and status checks show **2 out of 2 passed**. Our server is
+up."
 
 ---
 
 ## Part B — Connect over SSH
 
-"Now let's get inside this server. I'll click on the instance and copy its
-**Public IPv4 address** — this is the internet address of our machine.
+"Now let's get inside this server. Click on the instance and copy its **Public IPv4
+address** — this is the internet address of our machine.
 
-I'll open my terminal, and go into the folder where that key file got downloaded —
-for me it's Downloads:
+Open your terminal and go into the folder where the key file downloaded — for me it's
+Downloads:
 
 ```sh
 cd ~/Downloads
 ```
 
-Now one small thing first. If I try to use the key directly, SSH will complain it's
-too open. So I'll lock it down:
+First, lock down the key. If it's too open, SSH will complain:
 
 ```sh
 chmod 400 booknova-key.pem
 ```
 
-Now let's connect. I'll type `ssh`, then `-i` and my key file, then `ubuntu` — that's
-the username for Ubuntu servers — the `@` symbol, and paste the public IP:
+Now connect. Type `ssh`, then `-i` and your key file, then `ubuntu` — the username for
+Ubuntu servers — the `@` symbol, and paste the public IP:
 
 ```sh
 ssh -i booknova-key.pem ubuntu@<PUBLIC_IP>
 ```
 
-First time it asks 'are you sure you want to connect' — I'll just type **yes**.
+The first time it asks 'are you sure you want to connect' — type **yes**.
 
-And look at that — my prompt has changed. It now says `ubuntu@ip-...`. That means we're
-no longer on our laptop, we are now **inside the cloud server**. We made it."
+Now the prompt changed. It says `ubuntu@ip-...`. That means we're no longer on our
+laptop — we're **inside the cloud server**."
 
 ---
 
 ## Part C — Verify internet
 
-"Let me quickly check the server can reach the internet. I'll run:
+"Let's check the server can reach the internet. Run:
 
 ```sh
 sudo apt update
 ```
 
-You can see it's connecting out and reading the package lists — so internet is working
-perfectly. This machine is now ready, and in the next lecture we'll start installing
-all our DevOps tools on it, starting with Docker."
+It connects out and reads the package lists — so internet works. This machine is now
+ready. In the next lecture we start installing our DevOps tools, starting with Docker."
 
 ---
 
 ## Cleanup reminder
 
-"One last thing — this machine costs money while it runs. So when you're done studying
-for the day, go back to the EC2 console and **Stop** the instance. You can start it
-again next time. If you're completely finished, then **Terminate** it."
+"One last thing — this machine costs money while it runs. When you're done for the day,
+go back to the EC2 console and **Stop** the instance. You can start it again next time.
+If you're completely finished, then **Terminate** it."
 
 ## Placeholders
 - `<PUBLIC_IP>` → your instance's public IPv4

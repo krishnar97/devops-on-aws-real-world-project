@@ -3,108 +3,91 @@
 **Duration:** ~8–10 min
 **Goal:** On the Ubuntu EC2 instance, install Docker, Terraform, AWS CLI, configure AWS
 access, then install kubectl and Helm.
-**Style:** Spoken narration — talk through it naturally while doing it on screen.
+**Style:** Spoken narration — keep it very simple.
 **Assumes:** You are already SSH'd into the `booknova-ubuntu-01` server from S2-L01.
-**Commands:** All copy-paste commands live in
-[S2-L02-install-commands.md](S2-L02-install-commands.md). Keep that file open on screen
-and run the numbered blocks as you narrate each part below.
+**Commands:** All commands are in
+[S2-L02-install-commands.md](S2-L02-install-commands.md). Keep it open and follow the
+numbered sections.
 
 ---
 
-## Part A — Install Docker
+## Intro
 
-"Alright, let's just start by installing **Docker** on our Ubuntu server. Docker is
-what we'll use to build and run our containers.
-
-Instead of typing every command by hand, I'll use a small **install script** — it's
-faster and cleaner. You can open the script later and read exactly what it does; there
-are no surprises in there.
-
-I'll download the script onto the server, then run it — grab the commands from
-**section 1** of the commands file. It runs step by step and installs Docker for us.
-You could also do this manually, or on any OS you like — but the script just makes it
-painless.
-
-When it's finished, `docker version` confirms it worked.
-
-Now one important thing — right now Docker needs `sudo` every time. The next two lines
-in section 1 add our `ubuntu` user to the docker group so we can run Docker directly
-without `sudo`. "
+"In this session we will install all the required software. I have consolidated all the
+required commands in the commands file — you just need to follow that. Let's start."
 
 ---
 
-## Part B — Install Terraform
+## Part A — Docker
 
-"Next, we install **Terraform** — this is the tool we'll use to manage our
-infrastructure as code.
+"Let's start with Docker. Run the `curl` command to download the install script. Then
+run `sh` to install it. Then run `docker version` to check.
 
-Go to the Terraform website, open the Linux install instructions — I've already curated
-those exact commands in **section 2** of the commands file. I'll paste that block and
-run it.
-
-While it runs you just wait — and if it ever pauses and asks you to confirm, just press
-**Enter**. Once it's done, `terraform version` confirms we've got Terraform ready to
-manage our infrastructure."
+After that, run the two lines to add our user to the docker group, so we can use Docker
+without `sudo`. (Section 1 in the commands file.)"
 
 ---
 
-## Part C — Install the AWS CLI
+## Part B — Terraform
 
-"Now we install the **AWS CLI** on Ubuntu. Grab **section 3** of the commands file —
-it installs `unzip`, downloads the installer, unzips it, and runs the installer. Run it
-and wait a moment... and the AWS CLI is successfully set up on our Ubuntu server."
+"Next, Terraform. Copy the commands from section 2 and run them. Then run
+`terraform version` to check."
 
 ---
 
-## Part D — Configure AWS access (Admin user)
+## Part C — AWS CLI
 
-"Now we configure the **access key** so the server can talk to our AWS account.
+"Next, the AWS CLI. Copy the commands from section 3 and run them. Then run
+`aws --version` to check."
 
-In the AWS console, go to **Security credentials** for your **admin user**, and choose
-**Create access key** → **Command Line Interface (CLI)**. Confirm, and optionally add a
-description tag so you recognize it later.
+---
 
-Now you get an **Access key** and a **Secret access key**. Copy these somewhere safe —
-I'll paste them into a temporary note file for a moment, and keep that file secure.
+## Part D — Configure AWS access
 
-Back on the server, run `aws configure` (see **section 4** of the commands file). It
-asks four things:
-- **AWS Access Key ID** — paste it
-- **AWS Secret Access Key** — paste it
-- **Default region name** — I'll use `ap-south-1` (Mumbai)
+"Now connect it to AWS. First we create an access key in the AWS console.
+
+- Click your **account name** at the top-right, then **Security credentials**.
+- Scroll down to **Access keys** and click **Create access key**.
+- Choose **Command Line Interface (CLI)**, tick the confirmation checkbox, and click
+  **Next**.
+- (Optional) add a description tag, then click **Create access key**.
+- Now you see the **Access key ID** and the **Secret access key**. Click **Show** to
+  see the secret. Copy both — paste them into a text file on your machine so you have
+  them for the next step. You can also click **Download .csv file** to save them.
+
+Important: this is the **only time** the secret key is shown. Keep that text file safe,
+and delete the key from AWS when you no longer need it.
+
+Now run `aws configure` from section 4 and paste the values:
+- **AWS Access Key ID** — from your text file
+- **AWS Secret Access Key** — from your text file
+- **Default region name** — `ap-south-1` (Mumbai)
 - **Default output format** — `json`
 
-That's done. `aws s3 ls` confirms it can reach AWS — and there they are, our S3 buckets
-show up, so the connection works."
+Then run `aws s3 ls` to check. Our S3 buckets show up, so it works."
 
 ---
 
-## Part E — Install kubectl
+## Part E — kubectl
 
-"Next we install **kubectl** on the Ubuntu server — this is the tool we use to talk to
-our Kubernetes cluster. Go to the Kubernetes website for the step-by-step Linux
-commands — I've compiled them for you in **section 5** of the commands file. Run that
-block, and `kubectl version --client` confirms it's installed."
+"Next, kubectl. Copy the commands from section 5 and run them. Then run
+`kubectl version --client` to check."
 
 ---
 
-## Part F — Install Helm
+## Part F — Helm
 
-"Finally, we install **Helm** on Ubuntu. We need Helm to install charts later that help
-us work with the cluster. You can read the brief on the Helm website; I'll just run
-their install script from **section 6** of the commands file. Copy that, paste it,
-run it... and now we have Helm. `helm version` confirms it.
+"Last, Helm. Copy the command from section 6 and run it. Then run `helm version` to
+check.
 
-That's it — our server now has all the core DevOps tools installed: Docker, Terraform,
-the AWS CLI, kubectl, and Helm. In the next lecture we'll start using them."
+That's it — Docker, Terraform, AWS CLI, kubectl, and Helm are all installed."
 
 ---
 
 ## Cleanup reminder
 
-"Same as before — when you're done for the day, go to the EC2 console and **Stop** the
-instance so you're not paying for it. Your installed tools stay on the disk and will be
-there when you start it again."
+"When you're done for the day, go to the EC2 console and **Stop** the instance so you
+don't pay for it. Your tools stay on the disk for next time."
 
 ## Placeholders
 - Access Key ID / Secret Access Key → from your admin user's **Create access key**
